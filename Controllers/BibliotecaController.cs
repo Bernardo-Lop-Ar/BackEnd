@@ -157,7 +157,7 @@ namespace Biblioteca.Controllers
         private static List<Locatario> usuario = new List<Locatario>();
 
 
-        [HttpPost("{id}")]
+        [HttpPost]
         public ActionResult<List<Locatario>>
             EmprestarLivro(int id, Locatario novo)
         {
