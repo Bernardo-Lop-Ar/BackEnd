@@ -159,21 +159,21 @@ namespace Biblioteca.Controllers
 
         [HttpPost]
         public ActionResult<List<Locatario>>
-            EmprestarLivro(int id, Locatario novo)
+            EmprestarLivro(Locatario novo)
         {
-            if (novo.Id == 0 && usuario.Count > 0)
-                novo.Id = usuario[usuario.Count - 1].Id + 1;
+          
 
-            var livro = livros.Find(l => l.Id == id); 
+            var livro = livros.Find(l => l.Id == novo.Id); 
             if (livro != null && livro.Qtd > 0)
             {
                 livro.Qtd--;
                 usuario.Add(novo);
-                return Ok("Locação realizada com sucesso!!");
+                return Ok(livro);
             }
             else
             {
-                return BadRequest("Livro não disponível");
+               
+                return Ok(livro);
             }
         }
 
